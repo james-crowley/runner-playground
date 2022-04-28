@@ -2,7 +2,7 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - ppc64le
+      - runner-proxy
 
 jobs:
   runner:
@@ -20,6 +20,13 @@ jobs:
     resource_class: crowley-namespace/ppc64le
     steps:
       - run: echo "Testing PowerPC based Runner!"
+
+
+  runner-proxy:
+    machine: true
+    resource_class: crowley-namespace/runner-proxy
+    steps:
+      - run: echo "Testing Behind a Runner Proxy on amd64!"
 
   docker_build:
     machine:
