@@ -2,7 +2,7 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - runner-proxy
+      - ppc64le
 
 jobs:
   runner:
