@@ -2,10 +2,8 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - runner
-      - docker_build:
-          requires:
-            - "runner"
+      - ppc64le
+
 jobs:
   runner:
     machine: true
@@ -16,6 +14,12 @@ jobs:
           root: /tmp
           paths:
             - testing.txt
+
+  ppc64le:
+    machine: true
+    resource_class: crowley-namespace/ppc64le
+    steps:
+      - run: echo "Testing PowerPC based Runner!"
 
   docker_build:
     machine:
