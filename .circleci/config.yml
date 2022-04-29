@@ -4,8 +4,6 @@ workflows:
     jobs:
       - ppc64le:
           name: "PowerPC"
-      - runner-proxy:
-          name: "AMD64"
 
 jobs:
   runner:
@@ -25,7 +23,7 @@ jobs:
       - run: 
           command: |
             echo "Testing PowerPC based Runner!"
-            echo "I am running on $(arch)echo $(arch)"
+            echo "I am running on $(arch)"
 
 
   runner-proxy:
@@ -35,7 +33,7 @@ jobs:
       - run:
           command: |
             echo "Testing Behind a Runner Proxy!"
-            echo "I am running on $(arch)echo $(arch)"
+            echo "I am running on $(arch)"
 
   docker_build:
     machine:
