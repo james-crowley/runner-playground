@@ -2,48 +2,11 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - ppc64le:
-          name: "PowerPC"
+      - runner
 
 jobs:
   runner:
     machine: true
-    resource_class: crowley-namespace/runner-kub
+    resource_class: crowley-namespace/multi-arch-amd64
     steps:
-      - run: echo "Testing Workspace on Runner!" >> /tmp/testing.txt
-      - persist_to_workspace:
-          root: /tmp
-          paths:
-            - testing.txt
-
-  ppc64le:
-    machine: true
-    resource_class: crowley-namespace/ppc64le
-    steps:
-      - run: 
-          command: |
-            echo "Testing PowerPC based Runner!"
-            echo "I am running on $(arch)"
-
-
-  runner-proxy:
-    machine: true
-    resource_class: crowley-namespace/runner-proxy
-    steps:
-      - run:
-          command: |
-            echo "Testing Behind a Runner Proxy!"
-            echo "I am running on $(arch)"
-
-  docker_build:
-    machine:
-      image: ubuntu-2004:current
-      docker_layer_caching: true
-    steps:
-      - attach_workspace:
-          at: /tmp
-      - run: cat /tmp/testing.txt
-
-
-
-      
+      - run: echo "Hi I'm on Runners!"
