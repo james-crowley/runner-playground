@@ -27,7 +27,7 @@ jobs:
 
   runner:
     machine: true
-    resource_class: crowley/testing12343234213423142134212134
+    resource_class: crowley/ddsadsd
     steps:
       - run: echo "Hi I'm on Runners!"
 
