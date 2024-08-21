@@ -36,10 +36,12 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - runner
       - test:
           requires:
             - build
       - deploy:
+          requires:
+            - test
+      - rubber:
           requires:
             - test
