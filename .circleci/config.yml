@@ -25,11 +25,18 @@ jobs:
       - run: sleep 20
       - run: echo "this is the deploy job"
 
+  runner:
+    machine: true
+    resource_class: crowley/testing12343234213423142134212134
+    steps:
+      - run: echo "Hi I'm on Runners!"
+
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
     jobs:
       - build
+      - runner
       - test:
           requires:
             - build
