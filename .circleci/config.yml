@@ -2,32 +2,9 @@ version: 2.1
 
 # Define the jobs we want to run for this project
 jobs:
-  build:
-    machine: true
-    resource_class: crowley/ubuntu-init
-    steps:
-      - checkout
-      - run: sleep 60
-      - run: echo "this is the build job"
-  test:
-    docker:
-      - image: cimg/base:2023.03
-    steps:
-      - checkout
-      - run: sleep 30
-      - run: echo "this is the test job"
-
-  deploy:
-    docker:
-      - image: cimg/base:2023.03
-    steps:
-      - checkout
-      - run: sleep 20
-      - run: echo "this is the deploy job"
-
   runner:
     machine: true
-    resource_class: crowley/ddsadsd
+    resource_class: crowley/ubunut-init
     steps:
       - run: echo "Hi I'm on Runners!"
 
@@ -35,13 +12,4 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - test
-      - runner:
-          requires:
-            - test
+      - runner
